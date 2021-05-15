@@ -1,0 +1,2 @@
+# coinshark
+CoinShark
