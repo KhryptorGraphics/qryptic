@@ -13,13 +13,7 @@ public class WalletController {
     private WalletRepository walletRepository;
 
     @PostMapping("add")
-    public String addWallet(
-            @RequestParam String name, @RequestParam String description, @RequestParam String websiteURL
-    ) {
-        Wallet wallet = new Wallet();
-        wallet.setName(name);
-        wallet.setDescription(description);
-        wallet.setWebsiteURL(websiteURL);
+    public String addWallet(@RequestBody Wallet wallet) {
         this.walletRepository.save(wallet);
         return "A new crypto wallet has been added to the repo!";
     }

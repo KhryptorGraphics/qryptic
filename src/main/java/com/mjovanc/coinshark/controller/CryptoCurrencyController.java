@@ -13,17 +13,8 @@ public class CryptoCurrencyController {
     private CryptoCurrencyRepository cryptoCurrencyRepository;
 
     @PostMapping("add")
-    public String addCryptoCurrency(
-            @RequestParam String name, @RequestParam String ticker, @RequestParam String websiteURL,
-            @RequestParam String repositoryURL, @RequestParam String whitepaperURL
-    ) {
-        CryptoCurrency cc = new CryptoCurrency();
-        cc.setName(name);
-        cc.setTicker(ticker);
-        cc.setWebsiteURL(websiteURL);
-        cc.setRepositoryURL(repositoryURL);
-        cc.setWhitepaperURL(whitepaperURL);
-        cryptoCurrencyRepository.save(cc);
+    public String addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
+        cryptoCurrencyRepository.save(cryptoCurrency);
         return "A new crypto currency has been added to the repo!";
     }
 

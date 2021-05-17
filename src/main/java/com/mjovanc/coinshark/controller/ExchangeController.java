@@ -13,13 +13,7 @@ public class ExchangeController {
     private ExchangeRepository exchangeRepository;
 
     @PostMapping("add")
-    public String addExchange(
-            @RequestParam String name, @RequestParam String description, @RequestParam String websiteURL
-    ) {
-        Exchange exchange = new Exchange();
-        exchange.setName(name);
-        exchange.setDescription(description);
-        exchange.setWebsiteURL(websiteURL);
+    public String addExchange(@RequestBody Exchange exchange) {
         exchangeRepository.save(exchange);
         return "A new crypto exchange has been added to the repo!";
     }

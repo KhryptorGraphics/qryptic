@@ -7,7 +7,7 @@ CoinShark is an open API to retrieve data about crypto currencies, crypto wallet
 
 The API is built using:
 
-- Java OpenJDK 11
+- OpenJDK 11
 - Spring Boot 2.4.2
 
 For additonal information regarding libraries, see file requirements.txt.
@@ -18,10 +18,38 @@ Request a list of cryptocurrencies:
 
 `curl https://api.coinshark.finance/cryptocurrencies/list`
 
-Response
+Response:
 
 ```
+[
+    {
+        "id": 1,
+        "name": "Bitcoin",
+        "ticker": "BTC",
+        "websiteURL": "https://bitcoin.org",
+        "repositoryURL": "https://github.com/bitcoin/bitcoin",
+        "whitepaperURL": "https://bitcoin.org/bitcoin.pdf"
+    }
+]
+```
 
+Request a cryptocurrency by ID:
+
+`curl https://api.coinshark.finance/cryptocurrencies/1`
+
+Response:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Bitcoin",
+        "ticker": "BTC",
+        "websiteURL": "https://bitcoin.org",
+        "repositoryURL": "https://github.com/bitcoin/bitcoin",
+        "whitepaperURL": "https://bitcoin.org/bitcoin.pdf"
+    }
+]
 ```
 
 ## Contribute
