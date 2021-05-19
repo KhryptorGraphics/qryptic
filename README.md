@@ -1,4 +1,4 @@
-# CoinShark
+![alt text](coinshark-logo.png "CoinShark")
 
 ## About
 CoinShark is an open API to retrieve data about crypto currencies, crypto wallets and crypto exchanges. 
