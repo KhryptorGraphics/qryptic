@@ -34,7 +34,7 @@ Response:
 
 Request a cryptocurrency by ID:
 
-`curl https://api.coinshark.finance/cryptocurrencies/1`
+`curl https://api.coinshark.finance/cryptocurrencies/60a4fd4afa56747b745f5447`
 
 Response:
 
