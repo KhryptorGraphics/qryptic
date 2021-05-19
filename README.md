@@ -15,7 +15,7 @@ The API is built using:
 
 Request a list of cryptocurrencies:
 
-`curl https://api.coinshark.finance/cryptocurrencies/list`
+`curl https://api.coinshark.finance/v1/cryptocurrencies/list`
 
 Response:
 
@@ -25,16 +25,16 @@ Response:
         "id": "60a4fd4afa56747b745f5447",
         "name": "Bitcoin",
         "ticker": "BTC",
-        "websiteURL": "https://bitcoin.org",
-        "repositoryURL": "https://github.com/bitcoin/bitcoin",
-        "whitepaperURL": "https://bitcoin.org/bitcoin.pdf"
+        "website_url": "https://bitcoin.org",
+        "repository_url": "https://github.com/bitcoin/bitcoin",
+        "whitepaper_url": "https://bitcoin.org/bitcoin.pdf"
     }
 ]
 ```
 
 Request a cryptocurrency by ID:
 
-`curl https://api.coinshark.finance/cryptocurrencies/60a4fd4afa56747b745f5447`
+`curl https://api.coinshark.finance/v1/cryptocurrencies/60a4fd4afa56747b745f5447`
 
 Response:
 
@@ -44,9 +44,9 @@ Response:
         "id": "60a4fd4afa56747b745f5447",
         "name": "Bitcoin",
         "ticker": "BTC",
-        "websiteURL": "https://bitcoin.org",
-        "repositoryURL": "https://github.com/bitcoin/bitcoin",
-        "whitepaperURL": "https://bitcoin.org/bitcoin.pdf"
+        "website_url": "https://bitcoin.org",
+        "repository_url": "https://github.com/bitcoin/bitcoin",
+        "whitepaper_url": "https://bitcoin.org/bitcoin.pdf"
     }
 ]
 ```
