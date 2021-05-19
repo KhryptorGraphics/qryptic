@@ -24,7 +24,7 @@ public class ExchangeController {
     }
 
     @GetMapping("{id}")
-    public Exchange getExchangeById(@PathVariable Integer id) {
+    public Exchange getExchangeByName(@PathVariable String id) {
         return this.exchangeRepository.findExchangeById(id);
     }
  }

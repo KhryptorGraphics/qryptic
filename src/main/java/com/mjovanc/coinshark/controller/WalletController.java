@@ -23,8 +23,8 @@ public class WalletController {
         return this.walletRepository.findAll();
     }
 
-    @GetMapping("{id}")
-    public Wallet getWalletById(@PathVariable Integer id) {
+    @GetMapping("{name}")
+    public Wallet getWalletByName(@PathVariable String id) {
         return this.walletRepository.findWalletById(id);
     }
  }

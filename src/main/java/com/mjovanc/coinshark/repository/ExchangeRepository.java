@@ -1,8 +1,8 @@
 package com.mjovanc.coinshark.repository;
 
 import com.mjovanc.coinshark.model.Exchange;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ExchangeRepository extends CrudRepository<Exchange, Integer> {
-    Exchange findExchangeById(Integer id);
+public interface ExchangeRepository extends MongoRepository<Exchange, String> {
+    Exchange findExchangeById(String id);
 }

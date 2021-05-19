@@ -1,5 +1,7 @@
 package com.mjovanc.coinshark.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,18 +11,24 @@ import javax.persistence.Id;
 public class CryptoCurrency {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private String id;
     private String name;
     private String ticker;
+
+    @JsonProperty("website_url")
     private String websiteURL;
+
+    @JsonProperty("repository_url")
     private String repositoryURL;
+
+    @JsonProperty("whitepaper_url")
     private String whitepaperURL;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

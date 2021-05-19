@@ -24,7 +24,7 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("{id}")
-    public CryptoCurrency getCryptoCurrencyById(@PathVariable Integer id) {
+    public CryptoCurrency getCryptoCurrencyByName(@PathVariable String id) {
         return this.cryptoCurrencyRepository.findCryptoCurrencyById(id);
     }
- }
+}

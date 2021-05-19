@@ -9,8 +9,7 @@ The API is built using:
 
 - OpenJDK 11
 - Spring Boot 2.4.2
-
-For additonal information regarding libraries, see file requirements.txt.
+- MongoDB
 
 ## How to use
 
@@ -20,10 +19,10 @@ Request a list of cryptocurrencies:
 
 Response:
 
-```
+```JSON
 [
     {
-        "id": 1,
+        "id": "60a4fd4afa56747b745f5447",
         "name": "Bitcoin",
         "ticker": "BTC",
         "websiteURL": "https://bitcoin.org",
@@ -39,10 +38,10 @@ Request a cryptocurrency by ID:
 
 Response:
 
-```
+```JSON
 [
     {
-        "id": 1,
+        "id": "60a4fd4afa56747b745f5447",
         "name": "Bitcoin",
         "ticker": "BTC",
         "websiteURL": "https://bitcoin.org",

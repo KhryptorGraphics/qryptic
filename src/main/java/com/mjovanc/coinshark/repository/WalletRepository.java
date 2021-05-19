@@ -1,8 +1,8 @@
 package com.mjovanc.coinshark.repository;
 
 import com.mjovanc.coinshark.model.Wallet;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface WalletRepository extends CrudRepository<Wallet, Integer> {
-    Wallet findWalletById(Integer id);
+public interface WalletRepository extends MongoRepository<Wallet, String> {
+    Wallet findWalletById(String id);
 }
