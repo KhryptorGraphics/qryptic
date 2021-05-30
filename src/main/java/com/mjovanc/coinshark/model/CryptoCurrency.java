@@ -21,8 +21,11 @@ public class CryptoCurrency {
     @JsonProperty("repository_url")
     private String repositoryURL;
 
-    @JsonProperty("whitepaper_url")
-    private String whitepaperURL;
+    @JsonProperty("twitter_username")
+    private String twitterUsername;
+
+    @JsonProperty("reddit_url")
+    private String redditURL;
 
     public String getId() {
         return id;
@@ -64,11 +67,19 @@ public class CryptoCurrency {
         this.repositoryURL = repositoryURL;
     }
 
-    public String getWhitepaperURL() {
-        return whitepaperURL;
+    public String getTwitterUsername() {
+        return twitterUsername;
     }
 
-    public void setWhitepaperURL(String whitepaperURL) {
-        this.whitepaperURL = whitepaperURL;
+    public void setTwitterURL(String twitterUsername) {
+        this.twitterUsername = twitterUsername;
+    }
+
+    public String getRedditURL() {
+        return redditURL;
+    }
+
+    public void setRedditURL(String redditURL) {
+        this.redditURL = redditURL;
     }
 }
