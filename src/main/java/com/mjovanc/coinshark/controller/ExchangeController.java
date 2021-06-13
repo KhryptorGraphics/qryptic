@@ -1,6 +1,5 @@
 package com.mjovanc.coinshark.controller;
 
-import com.mjovanc.coinshark.model.CryptoCurrency;
 import com.mjovanc.coinshark.model.Exchange;
 import com.mjovanc.coinshark.repository.ExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +20,6 @@ public class ExchangeController {
 
     @Autowired
     private ExchangeRepository exchangeRepository;
-
-    @PostMapping("add")
-    public String addExchange(@RequestBody Exchange exchange) {
-        exchangeRepository.save(exchange);
-        return "A new crypto exchange has been added to the repo!";
-    }
 
     @GetMapping("list")
     public ResponseEntity<Map<String, Object>> getExchanges(

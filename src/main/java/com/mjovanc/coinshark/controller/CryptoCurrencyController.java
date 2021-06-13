@@ -21,12 +21,6 @@ public class CryptoCurrencyController {
     @Autowired
     private CryptoCurrencyRepository cryptoCurrencyRepository;
 
-    @PostMapping("add")
-    public String addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
-        cryptoCurrencyRepository.save(cryptoCurrency);
-        return "A new crypto currency has been added to the repo!";
-    }
-
     @GetMapping("list")
     public ResponseEntity<Map<String, Object>> getCryptoCurrencies(
             @RequestParam(required = false) String name,

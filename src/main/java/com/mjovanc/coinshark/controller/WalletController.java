@@ -1,6 +1,5 @@
 package com.mjovanc.coinshark.controller;
 
-import com.mjovanc.coinshark.model.Exchange;
 import com.mjovanc.coinshark.model.Wallet;
 import com.mjovanc.coinshark.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +20,6 @@ public class WalletController {
 
     @Autowired
     private WalletRepository walletRepository;
-
-    @PostMapping("add")
-    public String addWallet(@RequestBody Wallet wallet) {
-        this.walletRepository.save(wallet);
-        return "A new crypto wallet has been added to the repo!";
-    }
 
     @GetMapping("list")
     public ResponseEntity<Map<String, Object>> getWallets(
