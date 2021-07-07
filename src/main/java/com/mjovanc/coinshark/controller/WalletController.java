@@ -21,6 +21,12 @@ public class WalletController {
     @Autowired
     private WalletRepository walletRepository;
 
+    @PostMapping("add")
+    public String addWallet(@RequestBody Wallet wallet) {
+        this.walletRepository.save(wallet);
+        return "A new crypto wallet has been added to the repo!";
+    }
+
     @GetMapping("list")
     public ResponseEntity<Map<String, Object>> getWallets(
             @RequestParam(required = false) String name,
@@ -51,7 +57,7 @@ public class WalletController {
         }
     }
 
-    @GetMapping("{name}")
+    @GetMapping("{id}")
     public Wallet getWalletById(@PathVariable String id) {
         return this.walletRepository.findWalletById(id);
     }

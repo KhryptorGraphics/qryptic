@@ -54,9 +54,9 @@ Response:
 }
 ```
 
-### 2. Request a list of cryptocurrencies by name and order by page number and amount of items per page :
+### 2. Request a list of cryptocurrencies and order by page number and amount of items per page :
 
-`curl https://coinshark.mjovanc.com/api/v1/cryptocurrencies/list?name=Platinum&page=0&size=10`
+`curl https://coinshark.mjovanc.com/api/v1/cryptocurrencies/list?page=0&size=10`
 
 Response:
 

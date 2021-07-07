@@ -21,6 +21,12 @@ public class ExchangeController {
     @Autowired
     private ExchangeRepository exchangeRepository;
 
+    @PostMapping("add")
+    public String addExchange(@RequestBody Exchange exchange) {
+        exchangeRepository.save(exchange);
+        return "A new crypto exchange has been added to the repo!";
+    }
+
     @GetMapping("list")
     public ResponseEntity<Map<String, Object>> getExchanges(
             @RequestParam(required = false) String name,
