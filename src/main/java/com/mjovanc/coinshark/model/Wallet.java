@@ -3,6 +3,7 @@ package com.mjovanc.coinshark.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Wallet {
@@ -15,18 +16,17 @@ public class Wallet {
     @JsonProperty("website_url")
     private String websiteURL;
 
+    //TODO: add validator so it's not possible to enter blank, null or empty data to fields below
     @JsonProperty("wallet_type")
     private String walletType;
 
-    @JsonProperty("wallet_storage")
-    @ManyToOne
-    @JoinColumn
-    private WalletStorage walletStorage;
+    @JsonProperty("wallet_storages")
+    @OneToMany(targetEntity=WalletStorage.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<String> walletStorages;
 
-    @JsonProperty("wallet_platform")
-    @ManyToOne
-    @JoinColumn
-    private WalletPlatform walletPlatform;
+    @JsonProperty("wallet_platforms")
+    @OneToMany(targetEntity=WalletPlatform.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<String> walletPlatforms;
 
     public String getId() {
         return id;
@@ -68,19 +68,19 @@ public class Wallet {
         this.walletType = walletType;
     }
 
-    public WalletStorage getWalletStorage() {
-        return walletStorage;
+    public Set<String> getWalletStorages() {
+        return walletStorages;
     }
 
-    public void setWalletStorage(WalletStorage walletStorage) {
-        this.walletStorage = walletStorage;
+    public void setWalletStorages(Set<String> walletStorage) {
+        this.walletStorages = walletStorage;
     }
 
-    public WalletPlatform getWalletPlatform() {
-        return walletPlatform;
+    public Set<String> getWalletPlatforms() {
+        return walletPlatforms;
     }
 
-    public void setWalletPlatform(WalletPlatform walletPlatform) {
-        this.walletPlatform = walletPlatform;
+    public void setWalletPlatforms(Set<String> walletPlatform) {
+        this.walletPlatforms = walletPlatform;
     }
 }
