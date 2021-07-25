@@ -15,19 +15,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("cryptocurrency")
+@RequestMapping("cryptocurrencies")
 public class CryptoCurrencyController {
 
     @Autowired
     private CryptoCurrencyRepository cryptoCurrencyRepository;
 
-    @PostMapping("add")
+    @PostMapping
     public String addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
         cryptoCurrencyRepository.save(cryptoCurrency);
         return "A new crypto currency has been added to the repo!";
     }
 
-    @GetMapping("list")
+    @GetMapping
     public ResponseEntity<Map<String, Object>> getCryptoCurrencies(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,

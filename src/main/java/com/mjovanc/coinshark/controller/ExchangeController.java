@@ -15,19 +15,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("exchange")
+@RequestMapping("exchanges")
 public class ExchangeController {
 
     @Autowired
     private ExchangeRepository exchangeRepository;
 
-    @PostMapping("add")
+    @PostMapping
     public String addExchange(@RequestBody Exchange exchange) {
         exchangeRepository.save(exchange);
         return "A new crypto exchange has been added to the repo!";
     }
 
-    @GetMapping("list")
+    @GetMapping
     public ResponseEntity<Map<String, Object>> getExchanges(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,

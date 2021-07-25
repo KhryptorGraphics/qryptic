@@ -15,19 +15,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("wallet")
+@RequestMapping("wallets")
 public class WalletController {
 
     @Autowired
     private WalletRepository walletRepository;
 
-    @PostMapping("add")
+    @PostMapping
     public String addWallet(@RequestBody Wallet wallet) {
         this.walletRepository.save(wallet);
         return "A new crypto wallet has been added to the repo!";
     }
 
-    @GetMapping("list")
+    @GetMapping
     public ResponseEntity<Map<String, Object>> getWallets(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
