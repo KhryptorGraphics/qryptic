@@ -1,22 +1,17 @@
 package com.mjovanc.coinshark.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Exchange {
+public class WalletPlatform {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String name;
     private String description;
-
-    @JsonProperty("website_url")
-    private String websiteURL;
 
     public String getId() {
         return id;
@@ -40,13 +35,5 @@ public class Exchange {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getWebsiteURL() {
-        return websiteURL;
-    }
-
-    public void setWebsiteURL(String websiteURL) {
-        this.websiteURL = websiteURL;
     }
 }

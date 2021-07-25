@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("cryptocurrencies")
+@RequestMapping("api/v1/cryptocurrencies")
 public class CryptoCurrencyController {
-
     @Autowired
     private CryptoCurrencyRepository cryptoCurrencyRepository;
 
@@ -39,9 +38,9 @@ public class CryptoCurrencyController {
 
             Page<CryptoCurrency> pageTuts;
             if (name == null)
-                pageTuts = this.cryptoCurrencyRepository.findAll(paging);
+                pageTuts = cryptoCurrencyRepository.findAll(paging);
             else
-                pageTuts = this.cryptoCurrencyRepository.findByNameContainingIgnoreCase(name, paging);
+                pageTuts = cryptoCurrencyRepository.findByNameContainingIgnoreCase(name, paging);
 
             cryptocurrencies = pageTuts.getContent();
 
@@ -59,6 +58,6 @@ public class CryptoCurrencyController {
 
     @GetMapping("{id}")
     public CryptoCurrency getCryptoCurrencyById(@PathVariable String id) {
-        return this.cryptoCurrencyRepository.findCryptoCurrencyById(id);
+        return cryptoCurrencyRepository.findCryptoCurrencyById(id);
     }
 }

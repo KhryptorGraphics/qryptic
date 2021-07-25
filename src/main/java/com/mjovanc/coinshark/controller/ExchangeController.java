@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("exchanges")
+@RequestMapping("api/v1/exchanges")
 public class ExchangeController {
-
     @Autowired
     private ExchangeRepository exchangeRepository;
 
@@ -39,9 +38,9 @@ public class ExchangeController {
 
             Page<Exchange> pageTuts;
             if (name == null)
-                pageTuts = this.exchangeRepository.findAll(paging);
+                pageTuts = exchangeRepository.findAll(paging);
             else
-                pageTuts = this.exchangeRepository.findByNameContainingIgnoreCase(name, paging);
+                pageTuts = exchangeRepository.findByNameContainingIgnoreCase(name, paging);
 
             exchanges = pageTuts.getContent();
 
@@ -59,6 +58,6 @@ public class ExchangeController {
 
     @GetMapping("{id}")
     public Exchange getExchangeById(@PathVariable String id) {
-        return this.exchangeRepository.findExchangeById(id);
+        return exchangeRepository.findExchangeById(id);
     }
  }

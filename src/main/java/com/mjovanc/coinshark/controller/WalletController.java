@@ -15,15 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("wallets")
+@RequestMapping("api/v1/wallets")
 public class WalletController {
-
     @Autowired
     private WalletRepository walletRepository;
 
     @PostMapping
     public String addWallet(@RequestBody Wallet wallet) {
-        this.walletRepository.save(wallet);
+        walletRepository.save(wallet);
         return "A new crypto wallet has been added to the repo!";
     }
 
@@ -39,9 +38,9 @@ public class WalletController {
 
             Page<Wallet> pageTuts;
             if (name == null)
-                pageTuts = this.walletRepository.findAll(paging);
+                pageTuts = walletRepository.findAll(paging);
             else
-                pageTuts = this.walletRepository.findByNameContainingIgnoreCase(name, paging);
+                pageTuts = walletRepository.findByNameContainingIgnoreCase(name, paging);
 
             wallets = pageTuts.getContent();
 
@@ -59,6 +58,6 @@ public class WalletController {
 
     @GetMapping("{id}")
     public Wallet getWalletById(@PathVariable String id) {
-        return this.walletRepository.findWalletById(id);
+        return walletRepository.findWalletById(id);
     }
  }

@@ -2,14 +2,10 @@ package com.mjovanc.coinshark.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Wallet {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
@@ -18,6 +14,19 @@ public class Wallet {
 
     @JsonProperty("website_url")
     private String websiteURL;
+
+    @JsonProperty("wallet_type")
+    private String walletType;
+
+    @JsonProperty("wallet_storage")
+    @ManyToOne
+    @JoinColumn
+    private WalletStorage walletStorage;
+
+    @JsonProperty("wallet_platform")
+    @ManyToOne
+    @JoinColumn
+    private WalletPlatform walletPlatform;
 
     public String getId() {
         return id;
@@ -49,5 +58,29 @@ public class Wallet {
 
     public void setWebsiteURL(String websiteURL) {
         this.websiteURL = websiteURL;
+    }
+
+    public String getWalletType() {
+        return walletType;
+    }
+
+    public void setWalletType(String walletType) {
+        this.walletType = walletType;
+    }
+
+    public WalletStorage getWalletStorage() {
+        return walletStorage;
+    }
+
+    public void setWalletStorage(WalletStorage walletStorage) {
+        this.walletStorage = walletStorage;
+    }
+
+    public WalletPlatform getWalletPlatform() {
+        return walletPlatform;
+    }
+
+    public void setWalletPlatform(WalletPlatform walletPlatform) {
+        this.walletPlatform = walletPlatform;
     }
 }
