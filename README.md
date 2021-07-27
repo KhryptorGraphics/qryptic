@@ -9,7 +9,7 @@ The API is built using:
 
 - OpenJDK 16
 - Spring Boot 2.5.2
-- MongoDB
+- PostgreSQL
 
 ## How to use
 
