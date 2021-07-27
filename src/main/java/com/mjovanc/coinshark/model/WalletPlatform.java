@@ -16,16 +16,18 @@ public class WalletPlatform {
     private String name;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "wallet_id")
-    Wallet wallet;
+    @ManyToMany(mappedBy = "walletPlatforms")
+    public List<Wallet> wallets;
 
-    @JsonGetter("wallet")
-    public String wallet() {
-        if (wallet != null)
-            return "/api/v1/wallets/" + wallet.getId();
-        else
-            return null;
+    @JsonGetter("wallets")
+    public List<String> wallets() {
+        if(wallets != null) {
+            return wallets.stream()
+                    .map(wallet -> {
+                        return "/api/v1/wallets/" + wallet.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
     }
 
     public Long getId() {

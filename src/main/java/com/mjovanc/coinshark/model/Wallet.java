@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,37 +25,23 @@ public class Wallet {
     @Column(name="wallet_type")
     private String walletType;
 
-    @OneToMany
+    @ManyToMany
     @JsonProperty("wallet_platforms")
-    @JoinColumn(name = "walletPlatform_id")
-    List<WalletPlatform> walletPlatforms;
+    @JoinTable(
+            name = "wallet_wallet_platform",
+            joinColumns = {@JoinColumn(name = "wallet_id")},
+            inverseJoinColumns = {@JoinColumn(name = "wallet_platform_id")}
+    )
+    public List<WalletPlatform> walletPlatforms;
 
-    @OneToMany
-    @JsonProperty("wallet_storage")
-    @JoinColumn(name = "walletStorage_id")
-    List<WalletStorage> walletStorages;
-
-    @JsonGetter("wallet_platforms")
-    public List<String> walletPlatforms() {
-        if (walletPlatforms != null) {
-            return walletPlatforms.stream()
-                    .map(walletPlatform -> {
-                        return "/api/v1/wallet-platforms/" + walletPlatform.getId();
-                    }).collect(Collectors.toList());
-        }
-        return null;
-    }
-
-    @JsonGetter("wallet_storages")
-    public List<String> walletStorages() {
-        if (walletStorages != null) {
-            return walletStorages.stream()
-                    .map(walletStorage -> {
-                        return "/api/v1/wallet-storages/" + walletStorage.getId();
-                    }).collect(Collectors.toList());
-        }
-        return null;
-    }
+    @ManyToMany
+    @JsonProperty("wallet_storages")
+    @JoinTable(
+            name = "wallet_wallet_storage",
+            joinColumns = {@JoinColumn(name = "wallet_id")},
+            inverseJoinColumns = {@JoinColumn(name = "wallet_storage_id")}
+    )
+    public List<WalletStorage> walletStorages;
 
     public Long getId() {
         return id;
