@@ -3,9 +3,11 @@ package com.mjovanc.coinshark.repository;
 import com.mjovanc.coinshark.model.Exchange;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ExchangeRepository extends MongoRepository<Exchange, String> {
-    Exchange findExchangeById(String id);
+@Repository
+public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
+    Exchange findExchangeById(Long id);
     Page<Exchange> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }

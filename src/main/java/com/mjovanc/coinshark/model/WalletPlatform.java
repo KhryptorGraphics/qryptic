@@ -1,23 +1,38 @@
 package com.mjovanc.coinshark.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class WalletPlatform {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String name;
     private String description;
 
-    public String getId() {
+    @ManyToOne
+    @JoinColumn(name = "wallet_id")
+    Wallet wallet;
+
+    @JsonGetter("wallet")
+    public String wallet() {
+        if (wallet != null)
+            return "/api/v1/wallets/" + wallet.getId();
+        else
+            return null;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

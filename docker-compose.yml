@@ -6,25 +6,25 @@ services:
     ports:
       - "8080:8080"
     links:
-      - mongodb
+      - db
     depends_on:
-      - mongodb
+      - db
     networks:
       - shared-net
-  mongodb:
-    image: mongo:latest
+  db:
+    image: postgres
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
-    ports:
-      - 27017:27017
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test1234
     volumes:
-       - dbdata:/data/db
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
     networks:
       - shared-net
 
 volumes:
-  dbdata:
+  postgres:
 
 networks:
   shared-net:

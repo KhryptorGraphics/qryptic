@@ -15,15 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("api/v1/cryptocurrencies")
 public class CryptoCurrencyController {
     @Autowired
     private CryptoCurrencyRepository cryptoCurrencyRepository;
 
     @PostMapping
-    public String addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
-        cryptoCurrencyRepository.save(cryptoCurrency);
-        return "A new crypto currency has been added to the repo!";
+    public ResponseEntity<CryptoCurrency> addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
+        CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
+        HttpStatus status = HttpStatus.CREATED;
+        return new ResponseEntity<>(returnCryptoCurrency, status);
     }
 
     @GetMapping
@@ -46,9 +48,9 @@ public class CryptoCurrencyController {
 
             Map<String, Object> response = new HashMap<>();
             response.put("cryptocurrencies", cryptocurrencies);
-            response.put("currentPage", pageTuts.getNumber());
-            response.put("totalItems", pageTuts.getTotalElements());
-            response.put("totalPages", pageTuts.getTotalPages());
+            response.put("current_page", pageTuts.getNumber());
+            response.put("total_items", pageTuts.getTotalElements());
+            response.put("total_pages", pageTuts.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
@@ -57,7 +59,16 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("{id}")
-    public CryptoCurrency getCryptoCurrencyById(@PathVariable String id) {
-        return cryptoCurrencyRepository.findCryptoCurrencyById(id);
+    public ResponseEntity<CryptoCurrency> getCryptoCurrencyById(@PathVariable Long id) {
+        CryptoCurrency cryptoCurrency = new CryptoCurrency();
+        HttpStatus status;
+
+        if (cryptoCurrencyRepository.existsById(id)) {
+            status = HttpStatus.OK;
+            cryptoCurrency = cryptoCurrencyRepository.findCryptoCurrencyById(id);
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(cryptoCurrency, status);
     }
 }

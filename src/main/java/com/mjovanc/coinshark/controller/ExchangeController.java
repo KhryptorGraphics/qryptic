@@ -15,15 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("api/v1/exchanges")
 public class ExchangeController {
     @Autowired
     private ExchangeRepository exchangeRepository;
 
     @PostMapping
-    public String addExchange(@RequestBody Exchange exchange) {
-        exchangeRepository.save(exchange);
-        return "A new crypto exchange has been added to the repo!";
+    public ResponseEntity<Exchange> addExchange(@RequestBody Exchange exchange) {
+        Exchange returnExchange = exchangeRepository.save(exchange);
+        HttpStatus status = HttpStatus.CREATED;
+        return new ResponseEntity<>(returnExchange, status);
     }
 
     @GetMapping
@@ -46,9 +48,9 @@ public class ExchangeController {
 
             Map<String, Object> response = new HashMap<>();
             response.put("exchanges", exchanges);
-            response.put("currentPage", pageTuts.getNumber());
-            response.put("totalItems", pageTuts.getTotalElements());
-            response.put("totalPages", pageTuts.getTotalPages());
+            response.put("current_page", pageTuts.getNumber());
+            response.put("total_items", pageTuts.getTotalElements());
+            response.put("total_pages", pageTuts.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
@@ -57,7 +59,16 @@ public class ExchangeController {
     }
 
     @GetMapping("{id}")
-    public Exchange getExchangeById(@PathVariable String id) {
-        return exchangeRepository.findExchangeById(id);
+    public ResponseEntity<Exchange> getExchangeById(@PathVariable Long id) {
+        Exchange exchange = new Exchange();
+        HttpStatus status;
+
+        if (exchangeRepository.existsById(id)) {
+            status = HttpStatus.OK;
+            exchange = exchangeRepository.findExchangeById(id);
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(exchange, status);
     }
  }

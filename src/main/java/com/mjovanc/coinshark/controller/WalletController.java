@@ -15,15 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("api/v1/wallets")
 public class WalletController {
     @Autowired
     private WalletRepository walletRepository;
 
     @PostMapping
-    public String addWallet(@RequestBody Wallet wallet) {
-        walletRepository.save(wallet);
-        return "A new crypto wallet has been added to the repo!";
+    public ResponseEntity<Wallet> addWallet(@RequestBody Wallet wallet) {
+        Wallet returnWallet = walletRepository.save(wallet);
+        HttpStatus status = HttpStatus.CREATED;
+        return new ResponseEntity<>(returnWallet, status);
     }
 
     @GetMapping
@@ -46,9 +48,9 @@ public class WalletController {
 
             Map<String, Object> response = new HashMap<>();
             response.put("wallets", wallets);
-            response.put("currentPage", pageTuts.getNumber());
-            response.put("totalItems", pageTuts.getTotalElements());
-            response.put("totalPages", pageTuts.getTotalPages());
+            response.put("current_page", pageTuts.getNumber());
+            response.put("total_items", pageTuts.getTotalElements());
+            response.put("total_pages", pageTuts.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
@@ -57,7 +59,16 @@ public class WalletController {
     }
 
     @GetMapping("{id}")
-    public Wallet getWalletById(@PathVariable String id) {
-        return walletRepository.findWalletById(id);
+    public ResponseEntity<Wallet> getWalletById(@PathVariable Long id) {
+        Wallet wallet = new Wallet();
+        HttpStatus status;
+
+        if (walletRepository.existsById(id)) {
+            status = HttpStatus.OK;
+            wallet = walletRepository.findWalletById(id);
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(wallet, status);
     }
  }

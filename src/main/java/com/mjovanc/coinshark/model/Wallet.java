@@ -1,38 +1,66 @@
 package com.mjovanc.coinshark.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String name;
     private String description;
 
     @JsonProperty("website_url")
+    @Column(name="website_url")
     private String websiteURL;
 
     //TODO: add validator so it's not possible to enter blank, null or empty data to fields below
     @JsonProperty("wallet_type")
+    @Column(name="wallet_type")
     private String walletType;
 
-    @JsonProperty("wallet_storages")
-    @OneToMany(targetEntity=WalletStorage.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Set<String> walletStorages;
-
+    @OneToMany
     @JsonProperty("wallet_platforms")
-    @OneToMany(targetEntity=WalletPlatform.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Set<String> walletPlatforms;
+    @JoinColumn(name = "walletPlatform_id")
+    List<WalletPlatform> walletPlatforms;
 
-    public String getId() {
+    @OneToMany
+    @JsonProperty("wallet_storage")
+    @JoinColumn(name = "walletStorage_id")
+    List<WalletStorage> walletStorages;
+
+    @JsonGetter("wallet_platforms")
+    public List<String> walletPlatforms() {
+        if (walletPlatforms != null) {
+            return walletPlatforms.stream()
+                    .map(walletPlatform -> {
+                        return "/api/v1/wallet-platforms/" + walletPlatform.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    @JsonGetter("wallet_storages")
+    public List<String> walletStorages() {
+        if (walletStorages != null) {
+            return walletStorages.stream()
+                    .map(walletStorage -> {
+                        return "/api/v1/wallet-storages/" + walletStorage.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,21 +94,5 @@ public class Wallet {
 
     public void setWalletType(String walletType) {
         this.walletType = walletType;
-    }
-
-    public Set<String> getWalletStorages() {
-        return walletStorages;
-    }
-
-    public void setWalletStorages(Set<String> walletStorage) {
-        this.walletStorages = walletStorage;
-    }
-
-    public Set<String> getWalletPlatforms() {
-        return walletPlatforms;
-    }
-
-    public void setWalletPlatforms(Set<String> walletPlatform) {
-        this.walletPlatforms = walletPlatform;
     }
 }

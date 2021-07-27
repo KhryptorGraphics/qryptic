@@ -3,9 +3,11 @@ package com.mjovanc.coinshark.repository;
 import com.mjovanc.coinshark.model.Wallet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface WalletRepository extends MongoRepository<Wallet, String> {
-    Wallet findWalletById(String id);
+@Repository
+public interface WalletRepository extends JpaRepository<Wallet, Long> {
+    Wallet findWalletById(Long id);
     Page<Wallet> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }
