@@ -1,4 +1,4 @@
-![alt text](coinshark-logo.png "CoinShark")
+ <!--- ![alt text](qryptic-logo.png "Qryptic") -->
 
 ## About
 Qryptic is an open API to retrieve data about crypto currencies, crypto wallets and crypto exchanges. 
