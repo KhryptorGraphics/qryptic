@@ -35,6 +35,18 @@ public class WalletStorageController {
     }
 
     /**
+     * Update a Wallet Storage.
+     *
+     * @param walletStorage : WalletStorage
+     * @return ResponseEntity<WalletStorage>
+     */
+    @PutMapping
+    public ResponseEntity<WalletStorage> updateWalletStorage(@RequestBody WalletStorage walletStorage) {
+        WalletStorage returnWalletStorage = walletStorageRepository.save(walletStorage);
+        return new ResponseEntity<>(returnWalletStorage, HttpStatus.OK);
+    }
+
+    /**
      * Get all Wallet Storages.
      *
      * @return ResponseEntity<List<WalletStorage>>

@@ -36,8 +36,19 @@ public class ExchangeController {
     @PostMapping
     public ResponseEntity<Exchange> addExchange(@RequestBody Exchange exchange) {
         Exchange returnExchange = exchangeRepository.save(exchange);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnExchange, status);
+        return new ResponseEntity<>(returnExchange, HttpStatus.CREATED);
+    }
+
+    /**
+     * Update an Exchange.
+     *
+     * @param exchange : Exchange
+     * @return ResponseEntity<Exchange>
+     */
+    @PutMapping
+    public ResponseEntity<Exchange> updateExchange(@RequestBody Exchange exchange) {
+        Exchange returnExchange = exchangeRepository.save(exchange);
+        return new ResponseEntity<>(returnExchange, HttpStatus.OK);
     }
 
     /**

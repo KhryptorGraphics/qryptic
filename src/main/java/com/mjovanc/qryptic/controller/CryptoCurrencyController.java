@@ -36,8 +36,19 @@ public class CryptoCurrencyController {
     @PostMapping
     public ResponseEntity<CryptoCurrency> addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
         CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnCryptoCurrency, status);
+        return new ResponseEntity<>(returnCryptoCurrency, HttpStatus.CREATED);
+    }
+
+    /**
+     * Update a Crypto Currency.
+     *
+     * @param cryptoCurrency : CryptoCurrency
+     * @return ResponseEntity<CryptoCurrency>
+     */
+    @PutMapping
+    public ResponseEntity<CryptoCurrency> updateCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
+        CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
+        return new ResponseEntity<>(returnCryptoCurrency, HttpStatus.OK);
     }
 
     /**
@@ -85,7 +96,7 @@ public class CryptoCurrencyController {
      * @return ResponseEntity<CryptoCurrency>
      */
     @GetMapping("{id}")
-    public ResponseEntity<CryptoCurrency> getCryptoCurrencyById(@PathVariable Long id) {
+    public ResponseEntity<CryptoCurrency> getCryptoCurrency(@PathVariable Long id) {
         CryptoCurrency cryptoCurrency = new CryptoCurrency();
         HttpStatus status;
 

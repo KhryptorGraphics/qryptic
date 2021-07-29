@@ -40,6 +40,18 @@ public class WalletController {
     }
 
     /**
+     * Update a Wallet.
+     *
+     * @param wallet : Wallet
+     * @return ResponseEntity<Wallet>
+     */
+    @PutMapping
+    public ResponseEntity<Wallet> updateWallet(@RequestBody Wallet wallet) {
+        Wallet returnWallet = walletRepository.save(wallet);
+        return new ResponseEntity<>(returnWallet, HttpStatus.OK);
+    }
+
+    /**
      * Get all Wallets.
      *
      * @param name : String
@@ -84,7 +96,7 @@ public class WalletController {
      * @return ResponseEntity<Wallet>
      */
     @GetMapping("{id}")
-    public ResponseEntity<Wallet> getWalletById(@PathVariable Long id) {
+    public ResponseEntity<Wallet> getWallet(@PathVariable Long id) {
         Wallet wallet = new Wallet();
         HttpStatus status;
 

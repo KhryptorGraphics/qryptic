@@ -35,6 +35,18 @@ public class WalletPlatformController {
     }
 
     /**
+     * Update a Wallet Platform.
+     *
+     * @param walletPlatform : WalletPlatform
+     * @return ResponseEntity<WalletPlatform>
+     */
+    @PutMapping
+    public ResponseEntity<WalletPlatform> updateWalletPlatform(@RequestBody WalletPlatform walletPlatform) {
+        WalletPlatform returnWalletPlatform = walletPlatformRepository.save(walletPlatform);
+        return new ResponseEntity<>(returnWalletPlatform, HttpStatus.OK);
+    }
+
+    /**
      * Get all Wallet Platforms.
      *
      * @return ResponseEntity<List<WalletPlatform>>
