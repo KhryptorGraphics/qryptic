@@ -1,7 +1,7 @@
-package com.mjovanc.coinshark.controller;
+package com.mjovanc.qryptic.controller;
 
-import com.mjovanc.coinshark.model.Exchange;
-import com.mjovanc.coinshark.repository.ExchangeRepository;
+import com.mjovanc.qryptic.model.CryptoCurrency;
+import com.mjovanc.qryptic.repository.CryptoCurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,33 +15,33 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a Exchange Controller.
+ * Represents a Crypto Currency Controller.
  *
  * @author Marcus Cvjeticanin
  * @version 1.0
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("api/v1/exchanges")
-public class ExchangeController {
+@RequestMapping("api/v1/cryptocurrencies")
+public class CryptoCurrencyController {
     @Autowired
-    private ExchangeRepository exchangeRepository;
+    private CryptoCurrencyRepository cryptoCurrencyRepository;
 
     /**
-     * Add an Exchange.
+     * Add a Crypto Currency.
      *
-     * @param exchange : Exchange
-     * @return ResponseEntity<Exchange>
+     * @param cryptoCurrency : CryptoCurrency
+     * @return ResponseEntity<CryptoCurrency>
      */
     @PostMapping
-    public ResponseEntity<Exchange> addExchange(@RequestBody Exchange exchange) {
-        Exchange returnExchange = exchangeRepository.save(exchange);
+    public ResponseEntity<CryptoCurrency> addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
+        CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
         HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnExchange, status);
+        return new ResponseEntity<>(returnCryptoCurrency, status);
     }
 
     /**
-     * Get all Exchanges.
+     * Get all Crypto Currencies.
      *
      * @param name : String
      * @param page : int
@@ -49,25 +49,25 @@ public class ExchangeController {
      * @return ResponseEntity<Map<String, Object>>
      */
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getExchanges(
+    public ResponseEntity<Map<String, Object>> getCryptoCurrencies(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "25") int size
     ) {
         try {
-            List<Exchange> exchanges;
+            List<CryptoCurrency> cryptocurrencies;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Exchange> pageTuts;
+            Page<CryptoCurrency> pageTuts;
             if (name == null)
-                pageTuts = exchangeRepository.findAll(paging);
+                pageTuts = cryptoCurrencyRepository.findAll(paging);
             else
-                pageTuts = exchangeRepository.findByNameContainingIgnoreCase(name, paging);
+                pageTuts = cryptoCurrencyRepository.findByNameContainingIgnoreCase(name, paging);
 
-            exchanges = pageTuts.getContent();
+            cryptocurrencies = pageTuts.getContent();
 
             Map<String, Object> response = new HashMap<>();
-            response.put("exchanges", exchanges);
+            response.put("cryptocurrencies", cryptocurrencies);
             response.put("current_page", pageTuts.getNumber());
             response.put("total_items", pageTuts.getTotalElements());
             response.put("total_pages", pageTuts.getTotalPages());
@@ -79,22 +79,22 @@ public class ExchangeController {
     }
 
     /**
-     * Get an Exchange by id.
+     * Get a Crypto Currency by id.
      *
      * @param id : Long
-     * @return ResponseEntity<Exchange>
+     * @return ResponseEntity<CryptoCurrency>
      */
     @GetMapping("{id}")
-    public ResponseEntity<Exchange> getExchange(@PathVariable Long id) {
-        Exchange exchange = new Exchange();
+    public ResponseEntity<CryptoCurrency> getCryptoCurrencyById(@PathVariable Long id) {
+        CryptoCurrency cryptoCurrency = new CryptoCurrency();
         HttpStatus status;
 
-        if (exchangeRepository.existsById(id)) {
+        if (cryptoCurrencyRepository.existsById(id)) {
             status = HttpStatus.OK;
-            exchange = exchangeRepository.findExchangeById(id);
+            cryptoCurrency = cryptoCurrencyRepository.findCryptoCurrencyById(id);
         } else {
             status = HttpStatus.NOT_FOUND;
         }
-        return new ResponseEntity<>(exchange, status);
+        return new ResponseEntity<>(cryptoCurrency, status);
     }
- }
+}

@@ -1,7 +1,7 @@
-package com.mjovanc.coinshark.controller;
+package com.mjovanc.qryptic.controller;
 
-import com.mjovanc.coinshark.model.WalletStorage;
-import com.mjovanc.coinshark.repository.WalletStorageRepository;
+import com.mjovanc.qryptic.model.WalletStorage;
+import com.mjovanc.qryptic.repository.WalletStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
-package com.mjovanc.coinshark.repository;
+package com.mjovanc.qryptic.repository;
 
-import com.mjovanc.coinshark.model.WalletStorage;
+import com.mjovanc.qryptic.model.WalletStorage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

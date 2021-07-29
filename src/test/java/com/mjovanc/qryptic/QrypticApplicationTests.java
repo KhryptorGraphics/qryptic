@@ -1,10 +1,10 @@
-package com.mjovanc.coinshark;
+package com.mjovanc.qryptic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CoinsharkApplicationTests {
+class QrypticApplicationTests {
 
 	@Test
 	void contextLoads() {

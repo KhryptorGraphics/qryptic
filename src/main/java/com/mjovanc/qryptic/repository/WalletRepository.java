@@ -1,6 +1,6 @@
-package com.mjovanc.coinshark.repository;
+package com.mjovanc.qryptic.repository;
 
-import com.mjovanc.coinshark.model.Wallet;
+import com.mjovanc.qryptic.model.Wallet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.mjovanc.coinshark.model;
+package com.mjovanc.qryptic.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;

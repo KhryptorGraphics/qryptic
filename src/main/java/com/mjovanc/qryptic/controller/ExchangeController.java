@@ -1,7 +1,7 @@
-package com.mjovanc.coinshark.controller;
+package com.mjovanc.qryptic.controller;
 
-import com.mjovanc.coinshark.model.Wallet;
-import com.mjovanc.coinshark.repository.WalletRepository;
+import com.mjovanc.qryptic.model.Exchange;
+import com.mjovanc.qryptic.repository.ExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,32 +15,33 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a Wallet Controller.
+ * Represents a Exchange Controller.
  *
  * @author Marcus Cvjeticanin
  * @version 1.0
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("api/v1/wallets")
-public class WalletController {
+@RequestMapping("api/v1/exchanges")
+public class ExchangeController {
     @Autowired
-    private WalletRepository walletRepository;
+    private ExchangeRepository exchangeRepository;
 
     /**
-     * Add a Wallet.
+     * Add an Exchange.
      *
-     * @param wallet : Wallet
-     * @return ResponseEntity<Wallet>
+     * @param exchange : Exchange
+     * @return ResponseEntity<Exchange>
      */
     @PostMapping
-    public ResponseEntity<Wallet> addWallet(@RequestBody Wallet wallet) {
-        Wallet returnWallet = walletRepository.save(wallet);
-        return new ResponseEntity<>(returnWallet, HttpStatus.CREATED);
+    public ResponseEntity<Exchange> addExchange(@RequestBody Exchange exchange) {
+        Exchange returnExchange = exchangeRepository.save(exchange);
+        HttpStatus status = HttpStatus.CREATED;
+        return new ResponseEntity<>(returnExchange, status);
     }
 
     /**
-     * Get all Wallets.
+     * Get all Exchanges.
      *
      * @param name : String
      * @param page : int
@@ -48,25 +49,25 @@ public class WalletController {
      * @return ResponseEntity<Map<String, Object>>
      */
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getWallets(
+    public ResponseEntity<Map<String, Object>> getExchanges(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "25") int size
     ) {
         try {
-            List<Wallet> wallets;
+            List<Exchange> exchanges;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Wallet> pageTuts;
+            Page<Exchange> pageTuts;
             if (name == null)
-                pageTuts = walletRepository.findAll(paging);
+                pageTuts = exchangeRepository.findAll(paging);
             else
-                pageTuts = walletRepository.findByNameContainingIgnoreCase(name, paging);
+                pageTuts = exchangeRepository.findByNameContainingIgnoreCase(name, paging);
 
-            wallets = pageTuts.getContent();
+            exchanges = pageTuts.getContent();
 
             Map<String, Object> response = new HashMap<>();
-            response.put("wallets", wallets);
+            response.put("exchanges", exchanges);
             response.put("current_page", pageTuts.getNumber());
             response.put("total_items", pageTuts.getTotalElements());
             response.put("total_pages", pageTuts.getTotalPages());
@@ -78,22 +79,22 @@ public class WalletController {
     }
 
     /**
-     * Gets a Wallet by id.
+     * Get an Exchange by id.
      *
      * @param id : Long
-     * @return ResponseEntity<Wallet>
+     * @return ResponseEntity<Exchange>
      */
     @GetMapping("{id}")
-    public ResponseEntity<Wallet> getWalletById(@PathVariable Long id) {
-        Wallet wallet = new Wallet();
+    public ResponseEntity<Exchange> getExchange(@PathVariable Long id) {
+        Exchange exchange = new Exchange();
         HttpStatus status;
 
-        if (walletRepository.existsById(id)) {
+        if (exchangeRepository.existsById(id)) {
             status = HttpStatus.OK;
-            wallet = walletRepository.findWalletById(id);
+            exchange = exchangeRepository.findExchangeById(id);
         } else {
             status = HttpStatus.NOT_FOUND;
         }
-        return new ResponseEntity<>(wallet, status);
+        return new ResponseEntity<>(exchange, status);
     }
  }

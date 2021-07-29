@@ -1,7 +1,7 @@
-package com.mjovanc.coinshark.controller;
+package com.mjovanc.qryptic.controller;
 
-import com.mjovanc.coinshark.model.CryptoCurrency;
-import com.mjovanc.coinshark.repository.CryptoCurrencyRepository;
+import com.mjovanc.qryptic.model.Wallet;
+import com.mjovanc.qryptic.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,33 +15,32 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a Crypto Currency Controller.
+ * Represents a Wallet Controller.
  *
  * @author Marcus Cvjeticanin
  * @version 1.0
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("api/v1/cryptocurrencies")
-public class CryptoCurrencyController {
+@RequestMapping("api/v1/wallets")
+public class WalletController {
     @Autowired
-    private CryptoCurrencyRepository cryptoCurrencyRepository;
+    private WalletRepository walletRepository;
 
     /**
-     * Add a Crypto Currency.
+     * Add a Wallet.
      *
-     * @param cryptoCurrency : CryptoCurrency
-     * @return ResponseEntity<CryptoCurrency>
+     * @param wallet : Wallet
+     * @return ResponseEntity<Wallet>
      */
     @PostMapping
-    public ResponseEntity<CryptoCurrency> addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
-        CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnCryptoCurrency, status);
+    public ResponseEntity<Wallet> addWallet(@RequestBody Wallet wallet) {
+        Wallet returnWallet = walletRepository.save(wallet);
+        return new ResponseEntity<>(returnWallet, HttpStatus.CREATED);
     }
 
     /**
-     * Get all Crypto Currencies.
+     * Get all Wallets.
      *
      * @param name : String
      * @param page : int
@@ -49,25 +48,25 @@ public class CryptoCurrencyController {
      * @return ResponseEntity<Map<String, Object>>
      */
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getCryptoCurrencies(
+    public ResponseEntity<Map<String, Object>> getWallets(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "25") int size
     ) {
         try {
-            List<CryptoCurrency> cryptocurrencies;
+            List<Wallet> wallets;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<CryptoCurrency> pageTuts;
+            Page<Wallet> pageTuts;
             if (name == null)
-                pageTuts = cryptoCurrencyRepository.findAll(paging);
+                pageTuts = walletRepository.findAll(paging);
             else
-                pageTuts = cryptoCurrencyRepository.findByNameContainingIgnoreCase(name, paging);
+                pageTuts = walletRepository.findByNameContainingIgnoreCase(name, paging);
 
-            cryptocurrencies = pageTuts.getContent();
+            wallets = pageTuts.getContent();
 
             Map<String, Object> response = new HashMap<>();
-            response.put("cryptocurrencies", cryptocurrencies);
+            response.put("wallets", wallets);
             response.put("current_page", pageTuts.getNumber());
             response.put("total_items", pageTuts.getTotalElements());
             response.put("total_pages", pageTuts.getTotalPages());
@@ -79,22 +78,22 @@ public class CryptoCurrencyController {
     }
 
     /**
-     * Get a Crypto Currency by id.
+     * Gets a Wallet by id.
      *
      * @param id : Long
-     * @return ResponseEntity<CryptoCurrency>
+     * @return ResponseEntity<Wallet>
      */
     @GetMapping("{id}")
-    public ResponseEntity<CryptoCurrency> getCryptoCurrencyById(@PathVariable Long id) {
-        CryptoCurrency cryptoCurrency = new CryptoCurrency();
+    public ResponseEntity<Wallet> getWalletById(@PathVariable Long id) {
+        Wallet wallet = new Wallet();
         HttpStatus status;
 
-        if (cryptoCurrencyRepository.existsById(id)) {
+        if (walletRepository.existsById(id)) {
             status = HttpStatus.OK;
-            cryptoCurrency = cryptoCurrencyRepository.findCryptoCurrencyById(id);
+            wallet = walletRepository.findWalletById(id);
         } else {
             status = HttpStatus.NOT_FOUND;
         }
-        return new ResponseEntity<>(cryptoCurrency, status);
+        return new ResponseEntity<>(wallet, status);
     }
-}
+ }

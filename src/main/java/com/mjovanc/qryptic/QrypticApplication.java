@@ -1,4 +1,4 @@
-package com.mjovanc.coinshark;
+package com.mjovanc.qryptic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
-public class CoinsharkApplication extends SpringBootServletInitializer {
+public class QrypticApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
-		SpringApplication.run(CoinsharkApplication.class, args);
+		SpringApplication.run(QrypticApplication.class, args);
 	}
 }
