@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a Wallet Controller.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("api/v1/wallets")
@@ -21,13 +27,26 @@ public class WalletController {
     @Autowired
     private WalletRepository walletRepository;
 
+    /**
+     * Add a Wallet.
+     *
+     * @param wallet : Wallet
+     * @return ResponseEntity<Wallet>
+     */
     @PostMapping
     public ResponseEntity<Wallet> addWallet(@RequestBody Wallet wallet) {
         Wallet returnWallet = walletRepository.save(wallet);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnWallet, status);
+        return new ResponseEntity<>(returnWallet, HttpStatus.CREATED);
     }
 
+    /**
+     * Get all Wallets.
+     *
+     * @param name : String
+     * @param page : int
+     * @param size : int
+     * @return ResponseEntity<Map<String, Object>>
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getWallets(
             @RequestParam(required = false) String name,
@@ -58,6 +77,12 @@ public class WalletController {
         }
     }
 
+    /**
+     * Gets a Wallet by id.
+     *
+     * @param id : Long
+     * @return ResponseEntity<Wallet>
+     */
     @GetMapping("{id}")
     public ResponseEntity<Wallet> getWalletById(@PathVariable Long id) {
         Wallet wallet = new Wallet();

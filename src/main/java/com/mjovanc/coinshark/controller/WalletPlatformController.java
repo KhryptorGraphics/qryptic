@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Represents a Wallet Platform Controller.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("api/v1/wallet-platforms")
@@ -16,22 +22,37 @@ public class WalletPlatformController {
     @Autowired
     private WalletPlatformRepository walletPlatformRepository;
 
+    /**
+     * Add a Wallet Platform.
+     *
+     * @param walletPlatform : WalletPlatform
+     * @return ResponseEntity<WalletPlatform>
+     */
     @PostMapping
-    public ResponseEntity<WalletPlatform> addWalletStorage(@RequestBody WalletPlatform walletPlatform) {
+    public ResponseEntity<WalletPlatform> addWalletPlatform(@RequestBody WalletPlatform walletPlatform) {
         WalletPlatform returnWalletPlatform = walletPlatformRepository.save(walletPlatform);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnWalletPlatform, status);
+        return new ResponseEntity<>(returnWalletPlatform, HttpStatus.CREATED);
     }
 
+    /**
+     * Get all Wallet Platforms.
+     *
+     * @return ResponseEntity<List<WalletPlatform>>
+     */
     @GetMapping
-    public ResponseEntity<List<WalletPlatform>> getAllWalletPlatforms() {
+    public ResponseEntity<List<WalletPlatform>> getWalletPlatforms() {
         List<WalletPlatform> walletPlatforms = walletPlatformRepository.findAll();
-        HttpStatus status = HttpStatus.OK;
-        return new ResponseEntity<>(walletPlatforms, status);
+        return new ResponseEntity<>(walletPlatforms, HttpStatus.OK);
     }
 
+    /**
+     * Gets a Wallet Platform by id.
+     *
+     * @param id : Long
+     * @return ResponseEntity<WalletPlatform>
+     */
     @GetMapping("{id}")
-    public ResponseEntity<WalletPlatform> getWalletPlatformById(@PathVariable Long id) {
+    public ResponseEntity<WalletPlatform> getWalletPlatform(@PathVariable Long id) {
         WalletPlatform walletPlatform = new WalletPlatform();
         HttpStatus status;
 

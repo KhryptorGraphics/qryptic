@@ -6,6 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * CryptoCurrency Jpa Repository.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @Repository
 public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, Long> {
     CryptoCurrency findCryptoCurrencyById(Long id);

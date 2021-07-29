@@ -7,6 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+/**
+ * Represents a Wallet Storage Controller.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("api/v1/wallet-storages")
@@ -14,20 +22,37 @@ public class WalletStorageController {
     @Autowired
     private WalletStorageRepository walletStorageRepository;
 
+    /**
+     * Add a Wallet Storage.
+     *
+     * @param walletStorage : WalletStorage
+     * @return ResponseEntity<WalletStorage>
+     */
     @PostMapping
     public ResponseEntity<WalletStorage> addWalletStorage(@RequestBody WalletStorage walletStorage) {
         WalletStorage returnWalletStorage = walletStorageRepository.save(walletStorage);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(returnWalletStorage, status);
+        return new ResponseEntity<>(returnWalletStorage, HttpStatus.CREATED);
     }
 
+    /**
+     * Get all Wallet Storages.
+     *
+     * @return ResponseEntity<List<WalletStorage>>
+     */
     @GetMapping
-    public Iterable<WalletStorage> getAllWalletStorages() {
-        return walletStorageRepository.findAll();
+    public ResponseEntity<List<WalletStorage>> getWalletStorages() {
+        List<WalletStorage> walletStorages = walletStorageRepository.findAll();
+        return new ResponseEntity<>(walletStorages, HttpStatus.OK);
     }
 
+    /**
+     * Get a Wallet Storage by id.
+     *
+     * @param id : Long
+     * @return ResponseEntity<WalletStorage>
+     */
     @GetMapping("{id}")
-    public ResponseEntity<WalletStorage> getWalletStorageById(@PathVariable Long id) {
+    public ResponseEntity<WalletStorage> getWalletStorage(@PathVariable Long id) {
         WalletStorage walletStorage = new WalletStorage();
         HttpStatus status;
 

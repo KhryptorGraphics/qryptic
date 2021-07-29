@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a Exchange Controller.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("api/v1/exchanges")
@@ -21,6 +27,12 @@ public class ExchangeController {
     @Autowired
     private ExchangeRepository exchangeRepository;
 
+    /**
+     * Add an Exchange.
+     *
+     * @param exchange : Exchange
+     * @return ResponseEntity<Exchange>
+     */
     @PostMapping
     public ResponseEntity<Exchange> addExchange(@RequestBody Exchange exchange) {
         Exchange returnExchange = exchangeRepository.save(exchange);
@@ -28,6 +40,14 @@ public class ExchangeController {
         return new ResponseEntity<>(returnExchange, status);
     }
 
+    /**
+     * Get all Exchanges.
+     *
+     * @param name : String
+     * @param page : int
+     * @param size : int
+     * @return ResponseEntity<Map<String, Object>>
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getExchanges(
             @RequestParam(required = false) String name,
@@ -58,8 +78,14 @@ public class ExchangeController {
         }
     }
 
+    /**
+     * Get an Exchange by id.
+     *
+     * @param id : Long
+     * @return ResponseEntity<Exchange>
+     */
     @GetMapping("{id}")
-    public ResponseEntity<Exchange> getExchangeById(@PathVariable Long id) {
+    public ResponseEntity<Exchange> getExchange(@PathVariable Long id) {
         Exchange exchange = new Exchange();
         HttpStatus status;
 

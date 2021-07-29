@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a Crypto Currency Controller.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("api/v1/cryptocurrencies")
@@ -21,6 +27,12 @@ public class CryptoCurrencyController {
     @Autowired
     private CryptoCurrencyRepository cryptoCurrencyRepository;
 
+    /**
+     * Add a Crypto Currency.
+     *
+     * @param cryptoCurrency : CryptoCurrency
+     * @return ResponseEntity<CryptoCurrency>
+     */
     @PostMapping
     public ResponseEntity<CryptoCurrency> addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
         CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
@@ -28,6 +40,14 @@ public class CryptoCurrencyController {
         return new ResponseEntity<>(returnCryptoCurrency, status);
     }
 
+    /**
+     * Get all Crypto Currencies.
+     *
+     * @param name : String
+     * @param page : int
+     * @param size : int
+     * @return ResponseEntity<Map<String, Object>>
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getCryptoCurrencies(
             @RequestParam(required = false) String name,
@@ -58,6 +78,12 @@ public class CryptoCurrencyController {
         }
     }
 
+    /**
+     * Get a Crypto Currency by id.
+     *
+     * @param id : Long
+     * @return ResponseEntity<CryptoCurrency>
+     */
     @GetMapping("{id}")
     public ResponseEntity<CryptoCurrency> getCryptoCurrencyById(@PathVariable Long id) {
         CryptoCurrency cryptoCurrency = new CryptoCurrency();
