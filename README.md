@@ -1,3 +1,5 @@
+# Qryptic API 
+ 
  <!--- ![alt text](qryptic-logo.png "Qryptic") -->
 
 ## About
