@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("api/v1/wallets")
+@RequestMapping("v1/wallets")
 public class WalletController {
     @Autowired
     private WalletRepository walletRepository;

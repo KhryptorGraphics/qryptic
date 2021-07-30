@@ -17,7 +17,7 @@ The API is built using:
 
 ### 1. Request a list of cryptocurrencies:
 
-`curl https://coinshark.mjovanc.com/api/v1/cryptocurrenies`
+`curl https://api.qryptic.org/v1/cryptocurrenies`
 
 Response:
 
@@ -34,7 +34,7 @@ Response:
 
 ### 2. Request a cryptocurrency by ID:
 
-`curl https://coinshark.mjovanc.com/api/v1/cryptocurrencies/60a4fd4afa56747b745f5447`
+`curl https://api.qryptic.org/v1/cryptocurrencies/60a4fd4afa56747b745f5447`
 
 Response:
 

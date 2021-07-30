@@ -9,5 +9,4 @@ class QrypticApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

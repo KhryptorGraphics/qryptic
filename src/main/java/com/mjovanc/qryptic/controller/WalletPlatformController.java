@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("api/v1/wallet-platforms")
+@RequestMapping("v1/wallet-platforms")
 public class WalletPlatformController {
     @Autowired
     private WalletPlatformRepository walletPlatformRepository;
