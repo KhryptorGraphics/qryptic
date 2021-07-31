@@ -62,8 +62,8 @@ public class CryptoCurrencyController {
     @GetMapping
     public ResponseEntity<Map<String, Object>> getCryptoCurrencies(
             @RequestParam(required = false) String name,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "25") int size
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "25") int size
     ) {
         try {
             List<CryptoCurrency> cryptocurrencies;
