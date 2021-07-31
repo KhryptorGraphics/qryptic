@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.session:spring-session-core'
 	implementation group: 'org.springframework.data', name: 'spring-data-commons', version: '2.5.2'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.9'
 	runtimeOnly 'org.postgresql:postgresql'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
