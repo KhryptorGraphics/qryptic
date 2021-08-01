@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a Exchange Controller.
+ * Represents an Exchange Controller.
  *
  * @author Marcus Cvjeticanin
  * @version 1.0

@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: Qryptic
+  jpa:
+    hibernate:
+      ddl-auto: update
+

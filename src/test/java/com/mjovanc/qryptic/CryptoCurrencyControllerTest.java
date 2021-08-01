@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CryptoCurrencyController.class)
-@TestPropertySource(locations = "classpath:application-dev.properties")
+@TestPropertySource(locations = "classpath:application-dev.yml")
 public class CryptoCurrencyControllerTest {
     @Autowired
     private MockMvc mvc;

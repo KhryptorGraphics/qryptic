@@ -1,0 +1,14 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/qryptic
+    username: postgres
+    password: test1234
+
+springdoc:
+  api-docs:
+    path: /v1/docs
+  swagger-ui:
+    path: /v1/docs/index.html
+    operationsSorter: method
