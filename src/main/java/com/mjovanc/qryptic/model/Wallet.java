@@ -22,7 +22,7 @@ public class Wallet {
     @Column(name="wallet_type")
     private String walletType;
 
-    @ManyToMany
+    @OneToMany
     @JsonProperty("wallet_platforms")
     @JoinTable(
             name = "wallet_wallet_platform",
@@ -31,7 +31,7 @@ public class Wallet {
     )
     public List<WalletPlatform> walletPlatforms;
 
-    @ManyToMany
+    @OneToMany
     @JsonProperty("wallet_storages")
     @JoinTable(
             name = "wallet_wallet_storage",

@@ -13,19 +13,8 @@ public class WalletStorage {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "walletStorages")
+    @OneToMany
     public List<Wallet> wallets;
-
-    @JsonGetter("wallets")
-    public List<String> wallets() {
-        if(wallets != null) {
-            return wallets.stream()
-                    .map(wallet -> {
-                        return "/api/v1/wallets/" + wallet.getId();
-                    }).collect(Collectors.toList());
-        }
-        return null;
-    }
 
     public Long getId() {
         return id;

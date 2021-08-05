@@ -13,6 +13,13 @@ The API is built using:
 - Spring Boot 2.5.2
 - PostgreSQL
 
+## Database Schema
+
+The Database Schema below is the implementation of the API. It might not be totally accurate of how 
+the implementation actually is, but will however be for the first initial release.
+
+![Database Schema](database-schema.png "Database Schema")
+
 ## How to use
 
 Todo...
