@@ -3,7 +3,14 @@ package com.mjovanc.qryptic.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.List;
 
+/**
+ * Represents an Exchange entity.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @Entity
 public class Exchange {
     @Id
@@ -15,6 +22,9 @@ public class Exchange {
     @JsonProperty("website_url")
     @Column(name="website_url")
     private String websiteURL;
+
+    @ManyToMany(mappedBy="cryptoCurrencyExchanges")
+    List<CryptoCurrency> cryptocurrencies;
 
     public Long getId() {
         return id;
@@ -46,5 +56,13 @@ public class Exchange {
 
     public void setWebsiteURL(String websiteURL) {
         this.websiteURL = websiteURL;
+    }
+
+    public List<CryptoCurrency> getCryptocurrencies() {
+        return cryptocurrencies;
+    }
+
+    public void setCryptocurrencies(List<CryptoCurrency> cryptocurrencies) {
+        this.cryptocurrencies = cryptocurrencies;
     }
 }
