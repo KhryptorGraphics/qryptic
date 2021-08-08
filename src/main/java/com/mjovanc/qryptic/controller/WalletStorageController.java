@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("v1/wallet-storages")
+@RequestMapping("api/v1/wallet-storages")
 public class WalletStorageController {
     @Autowired
     private WalletStorageRepository walletStorageRepository;

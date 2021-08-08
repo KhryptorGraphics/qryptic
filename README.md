@@ -36,7 +36,7 @@ Response:
       "name": "Binance",
       "description": "Binance is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies.",
       "cryptocurrencies": [
-        "/v1/cryptocurrencies/8"
+        "/api/v1/cryptocurrencies/8"
       ],
       "website_url": "https://www.binance.com"
     },
@@ -45,7 +45,7 @@ Response:
       "name": "Kraken",
       "description": "Kraken is a United States-based cryptocurrency exchange and bank, founded in 2011.",
       "cryptocurrencies": [
-        "/v1/cryptocurrencies/8"
+        "/api/v1/cryptocurrencies/8"
       ],
       "website_url": "https://www.kraken.com"
     }
@@ -68,7 +68,7 @@ Response:
   "name": "Kraken",
   "description": "Kraken is a United States-based cryptocurrency exchange and bank, founded in 2011.",
   "cryptocurrencies": [
-    "/v1/cryptocurrencies/8"
+    "/api/v1/cryptocurrencies/8"
   ],
   "website_url": "https://www.kraken.com"
 }
@@ -89,11 +89,11 @@ Response:
       "name": "Bitcoin",
       "ticker": "BTC",
       "wallets": [
-        "/v1/wallets/7"
+        "/api/v1/wallets/7"
       ],
       "exchanges": [
-        "/v1/exchanges/1",
-        "/v1/exchanges/2"
+        "/api/v1/exchanges/1",
+        "/api/v1/exchanges/2"
       ],
       "website_url": "https://bitcoin.org",
       "repository_url": "https://github.com/bitcoin/bitcoin",
@@ -118,11 +118,11 @@ Response:
   "name": "Bitcoin",
   "ticker": "BTC",
   "wallets": [
-    "/v1/wallets/7"
+    "/api/v1/wallets/7"
   ],
   "exchanges": [
-    "/v1/exchanges/1",
-    "/v1/exchanges/2"
+    "/api/v1/exchanges/1",
+    "/api/v1/exchanges/2"
   ],
   "website_url": "https://bitcoin.org",
   "repository_url": "https://github.com/bitcoin/bitcoin",
@@ -145,17 +145,17 @@ Response:
       "name": "Trust Wallet",
       "description": "Buy, store, collect NFTs, exchange & earn crypto. Join 10 million+ people using Trust Wallet.",
       "cryptocurrencies": [
-        "/v1/cryptocurrencies/8"
+        "/api/v1/cryptocurrencies/8"
       ],
       "website_url": "https://trustwallet.com/",
       "wallet_type": "Software",
       "wallet_platforms": [
-        "/v1/wallet-platforms/5",
-        "/v1/wallet-platforms/6"
+        "/api/v1/wallet-platforms/5",
+        "/api/v1/wallet-platforms/6"
       ],
       "wallet_storages": [
-        "/v1/wallet-storages/3",
-        "/v1/wallet-storages/4"
+        "/api/v1/wallet-storages/3",
+        "/api/v1/wallet-storages/4"
       ]
     }
   ],
@@ -177,17 +177,17 @@ Response:
   "name": "Trust Wallet",
   "description": "Buy, store, collect NFTs, exchange & earn crypto. Join 10 million+ people using Trust Wallet.",
   "cryptocurrencies": [
-    "/v1/cryptocurrencies/8"
+    "/api/v1/cryptocurrencies/8"
   ],
   "website_url": "https://trustwallet.com/",
   "wallet_type": "Software",
   "wallet_platforms": [
-    "/v1/wallet-platforms/5",
-    "/v1/wallet-platforms/6"
+    "/api/v1/wallet-platforms/5",
+    "/api/v1/wallet-platforms/6"
   ],
   "wallet_storages": [
-    "/v1/wallet-storages/3",
-    "/v1/wallet-storages/4"
+    "/api/v1/wallet-storages/3",
+    "/api/v1/wallet-storages/4"
   ]
 }
 ```
@@ -205,7 +205,7 @@ Response:
     "name": "Android",
     "description": "Android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets.",
     "wallets": [
-      "/v1/wallets/7"
+      "/api/v1/wallets/7"
     ]
   },
   {
@@ -213,7 +213,7 @@ Response:
     "name": "iOS",
     "description": "iOS is a mobile operating system created and developed by Apple Inc. exclusively for its hardware.",
     "wallets": [
-      "/v1/wallets/7"
+      "/api/v1/wallets/7"
     ]
   }
 ]
@@ -231,7 +231,7 @@ Response:
   "name": "iOS",
   "description": "iOS is a mobile operating system created and developed by Apple Inc. exclusively for its hardware.",
   "wallets": [
-    "/v1/wallets/7"
+    "/api/v1/wallets/7"
   ]
 }
 ```
@@ -248,14 +248,14 @@ Response:
     "id": 3,
     "name": "Hot",
     "wallets": [
-      "/v1/wallets/7"
+      "/api/v1/wallets/7"
     ]
   },
   {
     "id": 4,
     "name": "Cold",
     "wallets": [
-      "/v1/wallets/7"
+      "/api/v1/wallets/7"
     ]
   }
 ]
@@ -272,7 +272,7 @@ Response:
   "id": 3,
   "name": "Hot",
   "wallets": [
-    "/v1/wallets/7"
+    "/api/v1/wallets/7"
   ]
 }
 ```

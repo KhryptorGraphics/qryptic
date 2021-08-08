@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("v1/exchanges")
+@RequestMapping("api/v1/exchanges")
 public class ExchangeController {
     @Autowired
     private ExchangeRepository exchangeRepository;
