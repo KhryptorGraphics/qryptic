@@ -1,6 +1,6 @@
 # Qryptic API 
  
- <!--- ![alt text](qryptic-logo.png "Qryptic") -->
+![alt text](qryptic-logo.png "Qryptic")
 
 ## About
 Qryptic is an open API to retrieve data about crypto currencies, crypto wallets and crypto exchanges. 
@@ -22,7 +22,35 @@ the implementation actually is, but will however be for the first initial releas
 
 ## How to use
 
-Todo...
+### 1. Request a list of Exchanges:
+
+`curl -X 'GET' 'http://api.qryptic.org/v1/exchanges?page=0&size=25' -H 'accept: */*'`
+
+Response:
+
+```JSON
+{
+  "exchanges": [
+    {
+      "id": 1,
+      "name": "Binance",
+      "description": "Binance is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies.",
+      "cryptocurrencies": [],
+      "website_url": "https://www.binance.com"
+    },
+    {
+      "id": 2,
+      "name": "Kraken",
+      "description": "Kraken is a United States-based cryptocurrency exchange and bank, founded in 2011.",
+      "cryptocurrencies": [],
+      "website_url": "https://www.kraken.com"
+    }
+  ],
+  "total_pages": 1,
+  "total_items": 2,
+  "current_page": 0
+}
+```
 
 ## Contribute
 
