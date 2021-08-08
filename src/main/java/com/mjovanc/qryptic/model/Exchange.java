@@ -1,9 +1,11 @@
 package com.mjovanc.qryptic.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents an Exchange entity.
@@ -23,8 +25,19 @@ public class Exchange {
     @Column(name="website_url")
     private String websiteURL;
 
-    @ManyToMany(mappedBy="cryptoCurrencyExchanges")
+    @ManyToMany(mappedBy="exchanges")
     List<CryptoCurrency> cryptocurrencies;
+
+    @JsonGetter("cryptocurrencies")
+    public List<String> getAllCryptoCurrencies() {
+        if(cryptocurrencies != null) {
+            return cryptocurrencies.stream()
+                    .map(cryptocurrency -> {
+                        return "/api/v1/cryptocurrencies/" + cryptocurrency.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
 
     public Long getId() {
         return id;

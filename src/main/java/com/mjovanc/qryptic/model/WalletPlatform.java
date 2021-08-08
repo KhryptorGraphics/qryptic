@@ -1,9 +1,11 @@
 package com.mjovanc.qryptic.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a Wallet Platform entity.
@@ -22,6 +24,17 @@ public class WalletPlatform {
 
     @ManyToMany(mappedBy="walletPlatforms")
     List<Wallet> wallets;
+
+    @JsonGetter("wallets")
+    public List<String> getAllWallets() {
+        if(wallets != null) {
+            return wallets.stream()
+                    .map(wallet -> {
+                        return "/api/v1/wallets/" + wallet.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
 
     public Long getId() {
         return id;

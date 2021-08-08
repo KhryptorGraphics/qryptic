@@ -43,7 +43,7 @@ public class CryptoCurrency {
             joinColumns = {@JoinColumn(name = "cryptocurrency_id")},
             inverseJoinColumns = {@JoinColumn(name = "wallet_id")}
     )
-    public List<Wallet> cryptoCurrencyWallets;
+    public List<Wallet> wallets;
 
     @ManyToMany
     @JoinTable(
@@ -51,12 +51,12 @@ public class CryptoCurrency {
             joinColumns = {@JoinColumn(name = "cryptocurrency_id")},
             inverseJoinColumns = {@JoinColumn(name = "exchange_id")}
     )
-    public List<Exchange> cryptoCurrencyExchanges;
+    public List<Exchange> exchanges;
 
-    @JsonGetter("cryptoCurrencyWallets")
-    public List<String> getAllCryptoCurrencyWallets() {
-        if(cryptoCurrencyWallets != null) {
-            return cryptoCurrencyWallets.stream()
+    @JsonGetter("wallets")
+    public List<String> getAllWallets() {
+        if(wallets != null) {
+            return wallets.stream()
                     .map(wallet -> {
                         return "/api/v1/wallets/" + wallet.getId();
                     }).collect(Collectors.toList());
@@ -64,10 +64,10 @@ public class CryptoCurrency {
         return null;
     }
 
-    @JsonGetter("cryptoCurrencyExchanges")
-    public List<String> getAllCryptoCurrencyExchanges() {
-        if(cryptoCurrencyExchanges != null) {
-            return cryptoCurrencyExchanges.stream()
+    @JsonGetter("exchanges")
+    public List<String> getAllExchanges() {
+        if(exchanges != null) {
+            return exchanges.stream()
                     .map(exchange -> {
                         return "/api/v1/exchanges/" + exchange.getId();
                     }).collect(Collectors.toList());
@@ -131,19 +131,19 @@ public class CryptoCurrency {
         this.redditURL = redditURL;
     }
 
-    public List<Wallet> getCryptoCurrencyWallets() {
-        return cryptoCurrencyWallets;
+    public List<Wallet> getWallets() {
+        return wallets;
     }
 
-    public void setCryptoCurrencyWallets(List<Wallet> cryptoCurrencyWallets) {
-        this.cryptoCurrencyWallets = cryptoCurrencyWallets;
+    public void setCryptoCurrencyWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
     }
 
-    public List<Exchange> getCryptoCurrencyExchanges() {
-        return cryptoCurrencyExchanges;
+    public List<Exchange> getExchanges() {
+        return exchanges;
     }
 
-    public void setCryptoCurrencyExchanges(List<Exchange> cryptoCurrencyExchanges) {
-        this.cryptoCurrencyExchanges = cryptoCurrencyExchanges;
+    public void setExchanges(List<Exchange> exchanges) {
+        this.exchanges = exchanges;
     }
 }

@@ -36,6 +36,7 @@ public class Wallet {
             joinColumns = {@JoinColumn(name = "wallet_id")},
             inverseJoinColumns = {@JoinColumn(name = "wallet_platform_id")}
     )
+    @JsonProperty("wallet_platforms")
     public List<WalletPlatform> walletPlatforms;
 
     @ManyToMany
@@ -44,9 +45,10 @@ public class Wallet {
             joinColumns = {@JoinColumn(name = "wallet_id")},
             inverseJoinColumns = {@JoinColumn(name = "wallet_storage_id")}
     )
+    @JsonProperty("wallet_storages")
     public List<WalletStorage> walletStorages;
 
-    @JsonGetter("walletPlatforms")
+    @JsonGetter("wallet_platforms")
     public List<String> getAllWalletPlatforms() {
         if(walletPlatforms != null) {
             return walletPlatforms.stream()
@@ -57,7 +59,7 @@ public class Wallet {
         return null;
     }
 
-    @JsonGetter("walletStorages")
+    @JsonGetter("wallet_storages")
     public List<String> getAllWalletStorages() {
         if(walletStorages != null) {
             return walletStorages.stream()
@@ -68,8 +70,19 @@ public class Wallet {
         return null;
     }
 
-    @ManyToMany(mappedBy="cryptoCurrencyWallets")
+    @ManyToMany(mappedBy="wallets")
     List<CryptoCurrency> cryptocurrencies;
+
+    @JsonGetter("cryptocurrencies")
+    public List<String> getAllCryptoCurrencies() {
+        if(cryptocurrencies != null) {
+            return cryptocurrencies.stream()
+                    .map(cryptocurrency -> {
+                        return "/api/v1/cryptocurrencies/" + cryptocurrency.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
 
     public Long getId() {
         return id;
