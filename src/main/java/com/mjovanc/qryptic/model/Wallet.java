@@ -53,7 +53,7 @@ public class Wallet {
         if(walletPlatforms != null) {
             return walletPlatforms.stream()
                     .map(wp -> {
-                        return "/api/v1/wallet-platforms/" + wp.getId();
+                        return "/v1/wallet-platforms/" + wp.getId();
                     }).collect(Collectors.toList());
         }
         return null;
@@ -64,7 +64,7 @@ public class Wallet {
         if(walletStorages != null) {
             return walletStorages.stream()
                     .map(ws -> {
-                        return "/api/v1/wallet-storages/" + ws.getId();
+                        return "/v1/wallet-storages/" + ws.getId();
                     }).collect(Collectors.toList());
         }
         return null;
@@ -78,7 +78,7 @@ public class Wallet {
         if(cryptocurrencies != null) {
             return cryptocurrencies.stream()
                     .map(cryptocurrency -> {
-                        return "/api/v1/cryptocurrencies/" + cryptocurrency.getId();
+                        return "/v1/cryptocurrencies/" + cryptocurrency.getId();
                     }).collect(Collectors.toList());
         }
         return null;
