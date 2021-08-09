@@ -35,8 +35,12 @@ public class ExchangeController {
      */
     @PostMapping
     public ResponseEntity<Exchange> addExchange(@RequestBody Exchange exchange) {
-        Exchange returnExchange = exchangeRepository.save(exchange);
-        return new ResponseEntity<>(returnExchange, HttpStatus.CREATED);
+        try {
+            Exchange returnExchange = exchangeRepository.save(exchange);
+            return new ResponseEntity<>(returnExchange, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -47,8 +51,12 @@ public class ExchangeController {
      */
     @PutMapping
     public ResponseEntity<Exchange> updateExchange(@RequestBody Exchange exchange) {
-        Exchange returnExchange = exchangeRepository.save(exchange);
-        return new ResponseEntity<>(returnExchange, HttpStatus.OK);
+        try {
+            Exchange returnExchange = exchangeRepository.save(exchange);
+            return new ResponseEntity<>(returnExchange, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**

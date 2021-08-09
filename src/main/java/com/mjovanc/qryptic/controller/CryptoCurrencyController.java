@@ -35,8 +35,12 @@ public class CryptoCurrencyController {
      */
     @PostMapping
     public ResponseEntity<CryptoCurrency> addCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
-        CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
-        return new ResponseEntity<>(returnCryptoCurrency, HttpStatus.CREATED);
+        try {
+            CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
+            return new ResponseEntity<>(returnCryptoCurrency, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -47,8 +51,12 @@ public class CryptoCurrencyController {
      */
     @PutMapping
     public ResponseEntity<CryptoCurrency> updateCryptoCurrency(@RequestBody CryptoCurrency cryptoCurrency) {
-        CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
-        return new ResponseEntity<>(returnCryptoCurrency, HttpStatus.OK);
+        try {
+            CryptoCurrency returnCryptoCurrency = cryptoCurrencyRepository.save(cryptoCurrency);
+            return new ResponseEntity<>(returnCryptoCurrency, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**

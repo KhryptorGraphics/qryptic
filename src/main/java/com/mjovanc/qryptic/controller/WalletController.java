@@ -35,8 +35,12 @@ public class WalletController {
      */
     @PostMapping
     public ResponseEntity<Wallet> addWallet(@RequestBody Wallet wallet) {
-        Wallet returnWallet = walletRepository.save(wallet);
-        return new ResponseEntity<>(returnWallet, HttpStatus.CREATED);
+        try {
+            Wallet returnWallet = walletRepository.save(wallet);
+            return new ResponseEntity<>(returnWallet, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -47,8 +51,12 @@ public class WalletController {
      */
     @PutMapping
     public ResponseEntity<Wallet> updateWallet(@RequestBody Wallet wallet) {
-        Wallet returnWallet = walletRepository.save(wallet);
-        return new ResponseEntity<>(returnWallet, HttpStatus.OK);
+        try {
+            Wallet returnWallet = walletRepository.save(wallet);
+            return new ResponseEntity<>(returnWallet, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**

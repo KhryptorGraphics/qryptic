@@ -30,8 +30,12 @@ public class WalletPlatformController {
      */
     @PostMapping
     public ResponseEntity<WalletPlatform> addWalletPlatform(@RequestBody WalletPlatform walletPlatform) {
-        WalletPlatform returnWalletPlatform = walletPlatformRepository.save(walletPlatform);
-        return new ResponseEntity<>(returnWalletPlatform, HttpStatus.CREATED);
+        try {
+            WalletPlatform returnWalletPlatform = walletPlatformRepository.save(walletPlatform);
+            return new ResponseEntity<>(returnWalletPlatform, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -42,8 +46,12 @@ public class WalletPlatformController {
      */
     @PutMapping
     public ResponseEntity<WalletPlatform> updateWalletPlatform(@RequestBody WalletPlatform walletPlatform) {
-        WalletPlatform returnWalletPlatform = walletPlatformRepository.save(walletPlatform);
-        return new ResponseEntity<>(returnWalletPlatform, HttpStatus.OK);
+        try {
+            WalletPlatform returnWalletPlatform = walletPlatformRepository.save(walletPlatform);
+            return new ResponseEntity<>(returnWalletPlatform, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -53,8 +61,12 @@ public class WalletPlatformController {
      */
     @GetMapping
     public ResponseEntity<List<WalletPlatform>> getWalletPlatforms() {
-        List<WalletPlatform> walletPlatforms = walletPlatformRepository.findAll();
-        return new ResponseEntity<>(walletPlatforms, HttpStatus.OK);
+        try {
+            List<WalletPlatform> walletPlatforms = walletPlatformRepository.findAll();
+            return new ResponseEntity<>(walletPlatforms, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
