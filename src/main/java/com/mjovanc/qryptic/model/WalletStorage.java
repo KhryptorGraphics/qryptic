@@ -6,6 +6,12 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a Wallet Storage entity.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @Entity
 public class WalletStorage {
     @Id
@@ -13,11 +19,11 @@ public class WalletStorage {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "walletStorages")
-    public List<Wallet> wallets;
+    @ManyToMany(mappedBy="walletStorages")
+    List<Wallet> wallets;
 
     @JsonGetter("wallets")
-    public List<String> wallets() {
+    public List<String> getAllWallets() {
         if(wallets != null) {
             return wallets.stream()
                     .map(wallet -> {
@@ -41,5 +47,13 @@ public class WalletStorage {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Wallet> getWallets() {
+        return wallets;
+    }
+
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
     }
 }

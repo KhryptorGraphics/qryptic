@@ -7,6 +7,12 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a Wallet Platform entity.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WalletPlatform {
@@ -16,11 +22,11 @@ public class WalletPlatform {
     private String name;
     private String description;
 
-    @ManyToMany(mappedBy = "walletPlatforms")
-    public List<Wallet> wallets;
+    @ManyToMany(mappedBy="walletPlatforms")
+    List<Wallet> wallets;
 
     @JsonGetter("wallets")
-    public List<String> wallets() {
+    public List<String> getAllWallets() {
         if(wallets != null) {
             return wallets.stream()
                     .map(wallet -> {
@@ -52,5 +58,13 @@ public class WalletPlatform {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Wallet> getWallets() {
+        return wallets;
+    }
+
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
     }
 }

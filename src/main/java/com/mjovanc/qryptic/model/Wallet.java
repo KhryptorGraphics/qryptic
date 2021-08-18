@@ -1,10 +1,18 @@
 package com.mjovanc.qryptic.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * Represents a Wallet entity.
+ *
+ * @author Marcus Cvjeticanin
+ * @version 1.0
+ */
 @Entity
 public class Wallet {
     @Id
@@ -23,22 +31,58 @@ public class Wallet {
     private String walletType;
 
     @ManyToMany
-    @JsonProperty("wallet_platforms")
     @JoinTable(
             name = "wallet_wallet_platform",
             joinColumns = {@JoinColumn(name = "wallet_id")},
             inverseJoinColumns = {@JoinColumn(name = "wallet_platform_id")}
     )
+    @JsonProperty("wallet_platforms")
     public List<WalletPlatform> walletPlatforms;
 
     @ManyToMany
-    @JsonProperty("wallet_storages")
     @JoinTable(
             name = "wallet_wallet_storage",
             joinColumns = {@JoinColumn(name = "wallet_id")},
             inverseJoinColumns = {@JoinColumn(name = "wallet_storage_id")}
     )
+    @JsonProperty("wallet_storages")
     public List<WalletStorage> walletStorages;
+
+    @JsonGetter("wallet_platforms")
+    public List<String> getAllWalletPlatforms() {
+        if(walletPlatforms != null) {
+            return walletPlatforms.stream()
+                    .map(wp -> {
+                        return "/api/v1/wallet-platforms/" + wp.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    @JsonGetter("wallet_storages")
+    public List<String> getAllWalletStorages() {
+        if(walletStorages != null) {
+            return walletStorages.stream()
+                    .map(ws -> {
+                        return "/api/v1/wallet-storages/" + ws.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    @ManyToMany(mappedBy="wallets")
+    List<CryptoCurrency> cryptocurrencies;
+
+    @JsonGetter("cryptocurrencies")
+    public List<String> getAllCryptoCurrencies() {
+        if(cryptocurrencies != null) {
+            return cryptocurrencies.stream()
+                    .map(cryptocurrency -> {
+                        return "/api/v1/cryptocurrencies/" + cryptocurrency.getId();
+                    }).collect(Collectors.toList());
+        }
+        return null;
+    }
 
     public Long getId() {
         return id;
@@ -78,5 +122,29 @@ public class Wallet {
 
     public void setWalletType(String walletType) {
         this.walletType = walletType;
+    }
+
+    public List<WalletPlatform> getWalletPlatforms() {
+        return walletPlatforms;
+    }
+
+    public void setWalletPlatforms(List<WalletPlatform> walletPlatforms) {
+        this.walletPlatforms = walletPlatforms;
+    }
+
+    public List<WalletStorage> getWalletStorages() {
+        return walletStorages;
+    }
+
+    public void setWalletStorages(List<WalletStorage> walletStorages) {
+        this.walletStorages = walletStorages;
+    }
+
+    public List<CryptoCurrency> getCryptocurrencies() {
+        return cryptocurrencies;
+    }
+
+    public void setCryptocurrencies(List<CryptoCurrency> cryptocurrencies) {
+        this.cryptocurrencies = cryptocurrencies;
     }
 }

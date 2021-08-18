@@ -2,7 +2,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/qryptic
+    url: jdbc:postgresql://localhost:5432/qryptic_dev_1
     username: postgres
     password: test1234
 

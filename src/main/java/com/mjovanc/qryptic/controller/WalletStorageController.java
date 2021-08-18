@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("v1/wallet-storages")
+@RequestMapping("api/v1/wallet-storages")
 public class WalletStorageController {
     @Autowired
     private WalletStorageRepository walletStorageRepository;
@@ -30,8 +30,12 @@ public class WalletStorageController {
      */
     @PostMapping
     public ResponseEntity<WalletStorage> addWalletStorage(@RequestBody WalletStorage walletStorage) {
-        WalletStorage returnWalletStorage = walletStorageRepository.save(walletStorage);
-        return new ResponseEntity<>(returnWalletStorage, HttpStatus.CREATED);
+        try {
+            WalletStorage returnWalletStorage = walletStorageRepository.save(walletStorage);
+            return new ResponseEntity<>(returnWalletStorage, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -42,8 +46,12 @@ public class WalletStorageController {
      */
     @PutMapping
     public ResponseEntity<WalletStorage> updateWalletStorage(@RequestBody WalletStorage walletStorage) {
-        WalletStorage returnWalletStorage = walletStorageRepository.save(walletStorage);
-        return new ResponseEntity<>(returnWalletStorage, HttpStatus.OK);
+        try {
+            WalletStorage returnWalletStorage = walletStorageRepository.save(walletStorage);
+            return new ResponseEntity<>(returnWalletStorage, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -53,8 +61,12 @@ public class WalletStorageController {
      */
     @GetMapping
     public ResponseEntity<List<WalletStorage>> getWalletStorages() {
-        List<WalletStorage> walletStorages = walletStorageRepository.findAll();
-        return new ResponseEntity<>(walletStorages, HttpStatus.OK);
+        try {
+            List<WalletStorage> walletStorages = walletStorageRepository.findAll();
+            return new ResponseEntity<>(walletStorages, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
