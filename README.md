@@ -12,6 +12,7 @@ The API is built using:
 - OpenJDK 16
 - Spring Boot 2.5.2
 - PostgreSQL
+- Firebase Authentication
 
 ## Database Schema
 
